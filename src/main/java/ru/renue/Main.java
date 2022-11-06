@@ -1,6 +1,11 @@
 package ru.renue;
 
-import ru.renue.csvReader.CsvFileParser;
+import ru.renue.csvParser.CsvFileParser;
+import ru.renue.searcher.BinarySearcher;
+import ru.renue.searcher.Searcher;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 
 public class Main {
@@ -11,6 +16,7 @@ public class Main {
 
         var parser = new CsvFileParser(src);
         var list = parser.getByColumn(1);
+        var searcher = new Searcher(list, new BinarySearcher());
 
         long finish = System.currentTimeMillis();
         long elapsed = finish - start;

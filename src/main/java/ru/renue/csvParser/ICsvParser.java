@@ -1,4 +1,4 @@
-package ru.renue.csvReader;
+package ru.renue.csvParser;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package ru.renue.csvReader;
+package ru.renue.csvParser;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -20,6 +20,7 @@ public class CsvFileParser extends CsvParser {
         return src;
     }
 
+    // todo: Тут нужен LinkedList??
     @Override
     public String[] getLinesById(int[] arrayId) {
         var stringArray = new String[arrayId.length];

@@ -1,4 +1,4 @@
-package ru.renue.csvReader;
+package ru.renue.csvParser;
 
 public abstract class CsvParser implements ICsvParser {
     protected CellData splitByColumn(String str, int columnId) {
