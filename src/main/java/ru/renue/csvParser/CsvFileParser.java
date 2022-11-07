@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CsvFileParser extends CsvParser {
-    private final String CSV_SPLITTER = ",";
-
     private final HashMap<Integer, Long> cachePointer;
 
     private final String src;
@@ -16,13 +14,8 @@ public class CsvFileParser extends CsvParser {
         cachePointer = new HashMap<>();
     }
 
-    public String getSrc() {
-        return src;
-    }
-
-    // todo: Тут нужен LinkedList??
     @Override
-    public String[] getLinesById(int[] arrayId) {
+    public String[] getLinesById(Integer[] arrayId) {
         var stringArray = new String[arrayId.length];
 
         try (RandomAccessFile reader = new RandomAccessFile(src, "r")) {
@@ -63,6 +56,7 @@ public class CsvFileParser extends CsvParser {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
 
         return list;
     }

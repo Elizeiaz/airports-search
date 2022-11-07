@@ -1,8 +1,8 @@
 package ru.renue.csvParser;
 
 public class CellData {
-    private int m_id;
-    private String m_value;
+    private final int m_id;
+    private final String m_value;
 
     public int getId() {
         return m_id;

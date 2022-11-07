@@ -11,6 +11,9 @@ public abstract class CsvParser implements ICsvParser {
             throw e;
         }
 
+        if (columnId > values.length || columnId < 0)
+            throw new IndexOutOfBoundsException("Incorrect column id: " + columnId);
+
         String value = values[columnId];
         if (value.charAt(0) == '\"') {
             value = value.replaceAll("^\"|\"$", "");

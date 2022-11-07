@@ -12,7 +12,7 @@ public class BinarySearcher extends ArrayAlgorithm {
         var list = new LinkedList<String>();
 
         var startPos = getLeftEdge(array, pattern, firstMatch);
-        while (startPos < array.size() && byteCompare(pattern, array.get(startPos)) == 0){
+        while (startPos < array.size() && byteCompare(pattern, array.get(startPos)) == 0) {
             list.add(array.get(startPos));
             startPos++;
         }
@@ -21,44 +21,48 @@ public class BinarySearcher extends ArrayAlgorithm {
     }
 
     // first match item, else -1
-    private int binarySearch(LinkedList<String> array, String pattern){
+    private int binarySearch(LinkedList<String> array, String pattern) {
         int left = 0;
         int right = array.size() - 1;
-
-        while (left <= right){
-            int middle = left + ((right-left) / 2);
-            int compareResult = byteCompare(pattern, array.get(middle));
-            switch (compareResult){
-                case 0:
-                    return middle;
-                case -1:
-                    right = middle - 1;
-                    break;
-                case 1:
-                    left = middle + 1;
-                    break;
+        int mid;
+        while (left <= right) {
+            mid = (left + right) / 2;
+            int compareResult = byteCompare(pattern, array.get(mid));
+            if (compareResult > 0) {
+                left = mid + 1;
+            } else if (compareResult < 0) {
+                right = mid - 1;
+            } else {
+                return mid;
             }
         }
+
         return -1;
     }
 
     // -1 - pattern < value; 0 - value startsWith Pattern; 1 - pattern > value;
-    private int byteCompare(String pattern, String value){
-        if (value.startsWith(pattern))
+    private int byteCompare(String pattern, String value) {
+        String lValue = value.toLowerCase();
+        String lPatter = pattern.toLowerCase();
+
+        if (lValue.startsWith(lPatter))
             return 0;
 
-        for (var i = 0; i < Math.min(pattern.length(), value.length()); i++){
-            if (pattern.charAt(i) < value.charAt(i))
+        for (var i = 0; i < Math.min(lPatter.length(), lValue.length()); i++) {
+            if (lPatter.charAt(i) < lValue.charAt(i))
                 return -1;
+            else if (lPatter.charAt(i) > lValue.charAt(i)) {
+                return 1;
+            }
         }
 
         return 1;
     }
 
-    private int getLeftEdge(LinkedList<String> array, String pattern, int startPos){
+    private int getLeftEdge(LinkedList<String> array, String pattern, int startPos) {
         int left = startPos;
 
-        while (left > 0 && byteCompare(pattern, array.get(left - 1)) == 0){
+        while (left > 0 && byteCompare(pattern, array.get(left - 1)) == 0) {
             left--;
         }
 
